@@ -1,4 +1,4 @@
-# online-retail-demo-api
+# Online Retail Demo API
 
 ## Introduction
 
