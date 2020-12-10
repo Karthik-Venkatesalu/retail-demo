@@ -6,7 +6,8 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 # COPY ["Api/Api.csproj", "Api/"]
 # RUN dotnet restore "Api/Api.csproj"
-COPY . .
+COPY src/** .
+ls
 RUN dotnet restore "retail-demo.sln"
 WORKDIR "/src/Api"
 RUN dotnet build "Api.csproj" -c Release -o /app/build
