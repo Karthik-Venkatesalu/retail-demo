@@ -6,6 +6,9 @@ namespace Application.Product.Interfaces
 {
     public interface IRequestHandler
     {
-        Response<Dto.Model.Product> AddProduct(Request<Dto.Model.Product> propertyRequest);
+        Response<Dto.Model.Product> AddProduct(Request<Dto.Model.Product> productRequest);
+        Response<Dto.Model.Product> GetProduct(int productID);
+        Response<Dto.Model.Product> UpdateProduct(Request<Dto.Model.Product> productRequest);
+        BaseResponse DeleteProduct(int productID);
     }
 }

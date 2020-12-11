@@ -10,5 +10,7 @@ namespace Application.Product.Interfaces
     {
         Domain.Entities.Product AddProduct(Domain.Entities.Product product);
         Domain.Entities.Product GetProduct(int productID);
+        Domain.Entities.Product UpdateProduct(Domain.Entities.Product product);
+        bool DeletProduct(int productID);
     }
 }

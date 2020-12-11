@@ -32,6 +32,11 @@ namespace Infrastructure
             return _productRequestHandler.AddProduct(productRequest);
         }
 
+        public Response<Product> GetProduct(int productID)
+        {
+            return _productRequestHandler.GetProduct(productID);
+        }
+
         public BaseResponse AddOrder(Request<Order> orderRequest)
         {
             return _orderRequestHandler.CreateOrder(orderRequest);
@@ -40,6 +45,16 @@ namespace Infrastructure
         public Response<Order> GetOrder(int orderID)
         {
             return _orderRequestHandler.GetOrder(orderID);
+        }
+
+        public Response<Product> UpdateProduct(Request<Product> productRequest)
+        {
+            return _productRequestHandler.UpdateProduct(productRequest);
+        }
+
+        public BaseResponse DeleteProduct(int productID)
+        {
+            return _productRequestHandler.DeleteProduct(productID);
         }
     }
 }

@@ -9,6 +9,9 @@ namespace Infrastructure.Interfaces
     {
         // Product
         Response<Product> AddProduct(Request<Product> productRequest);
+        Response<Product> GetProduct(int productID);
+        Response<Product> UpdateProduct(Request<Product> productRequest);
+        BaseResponse DeleteProduct(int productID);
 
         // Order
         BaseResponse AddOrder(Request<Order> orderRequest);
