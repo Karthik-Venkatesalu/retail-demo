@@ -18,7 +18,7 @@ Demo retail API includes following components:
 
 - .net core web api
 - xUnit 
-- Dapper (Micor ORM)
+- Dapper (Micro ORM)
 - Amazon ECS - Fargate
 - Amazon RDS - PostgreSQL
 - Jenkins / Github Actions
