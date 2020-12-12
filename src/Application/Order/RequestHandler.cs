@@ -49,7 +49,7 @@ namespace Application.Order
                 {
                     ErrorList = new List<Error> { new Error() {
                         Code = "435",
-                        Detail = $"invalid product ids - {string.Join(", ", invalidIDs)}",
+                        Detail = $"Invalid product ids - {string.Join(", ", invalidIDs.Select(i => i.ID))}",
                         Id = Guid.NewGuid().ToString(),
                         Status = "400",
                         Title = "Invalid request"
@@ -72,7 +72,7 @@ namespace Application.Order
                 return Response.Builder.BuildErrorResponse(new Errors()
                 {
                     ErrorList = new List<Error> { new Error() {
-                        Code = "435",
+                        Code = "415",
                         Detail = $"Insufficient quantity for products - {string.Join(", ", insufficientQuantities.Select(i => i.ID))}",
                         Id = Guid.NewGuid().ToString(),
                         Status = "400",

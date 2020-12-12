@@ -54,7 +54,7 @@ namespace Application.Product
                 return Response.Builder.BuildErrorResponse(new Errors()
                 {
                     ErrorList = new List<Error> { new Error() {
-                        Code = "435",
+                        Code = "425",
                         Detail = $"Failed to delete product, id - {productID}",
                         Id = Guid.NewGuid().ToString(),
                         Status = "500",
