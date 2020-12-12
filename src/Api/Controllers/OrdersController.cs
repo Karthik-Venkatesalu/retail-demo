@@ -41,7 +41,7 @@ namespace api.Controllers
             }
         }
 
-        [HttpGet("{orderID}")]
+        [HttpDelete("{orderID}")]
         public ActionResult CancelOrder(int orderID)
         {
             try

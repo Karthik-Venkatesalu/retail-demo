@@ -4,12 +4,12 @@
 
 Sample API implementation to demostrate the end to end flow of a platform service. Demo service includes the APIs below.
 
-- GET /products
 - GET /products/{id}
 - POST /products
-- PATCH /products/{id}
+- PUT /products/{id}
+- DELETE /products/{id}
 
-- GET /orders/{id}
+- DELETE /orders/{id}
 - POST /orders
 
 ## Technical Architecture
@@ -17,8 +17,10 @@ Sample API implementation to demostrate the end to end flow of a platform servic
 Demo retail API includes following components:
 
 - .net core web api
+- xUnit 
+- Dapper (Micor ORM)
 - Amazon ECS - Fargate
-- Amazon Aurora PostgreSQL
+- Amazon RDS - PostgreSQL
 - Jenkins / Github Actions
 
 Code flow is strucutred using Clean Architecture principle. 
