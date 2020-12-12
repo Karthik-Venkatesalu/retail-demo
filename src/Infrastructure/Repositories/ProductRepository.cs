@@ -4,6 +4,7 @@ using Domain.Entities;
 using Infrastructure.Service;
 using Npgsql;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -30,7 +31,7 @@ namespace Infrastructure.Repositories
                     quantity = product.Quantity,
                     price = product.Price
                 };
-                product.ID = connection.Execute($"insert into retail.product (name, description, quantity, price) values (@name, @description, @quantity, @price);", parameters);
+                product.ID = connection.ExecuteScalar<int>($"insert into retail.product (name, description, quantity, price) values (@name, @description, @quantity, @price) RETURNING id;", parameters);
             }
 
             return product;
@@ -64,6 +65,25 @@ namespace Infrastructure.Repositories
             }
         }
 
+        public List<Domain.Entities.Product> GetProducts(int[] productIDs)
+        {
+            using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                var query = @"select 
+                    id as ID, 
+                    name as Name, 
+                    description as Description, 
+                    quantity as Quantity,
+                    price as Price
+                    from retail.product
+                    where id in (@productIDs)";
+
+                return connection.Query<Product>(query, new { productIDs }).ToList();
+            }
+        }
+
         public Product UpdateProduct(Product product)
         {
             using (var connection = new NpgsqlConnection())
@@ -77,13 +97,27 @@ namespace Infrastructure.Repositories
                     quantity = product.Quantity,
                     price = product.Price
                 };
-                if (connection.Execute($"update retail.product set name = @name, description = @description, quantity = @quantity, price = @price where id = @productID;", parameters) > 0 )
+                if (connection.Execute($"update retail.product set name = @name, description = @description, quantity = @quantity, price = @price where id = @productID;", parameters) > 0)
                 {
                     return product;
                 }
             }
 
             return null;
+        }
+
+        public void BulkUpdateProductQuantity(List<Application.Dto.Model.OrderProduct> orderProducts)
+        {
+            using (var connection = new NpgsqlConnection())
+            {
+                connection.Open();
+                var parameters = orderProducts.Select(product => new
+                {
+                    productID = product.ID,
+                    quantity = product.Quantity,
+                });
+                connection.Execute($"update retail.product set quantity = quantity - @quantity where id = @productID;", parameters);
+            }
         }
     }
 }

@@ -14,12 +14,12 @@ namespace Application.Order
                 AddressID = order.AddressID,
                 CreatedTime = order.CreatedTime,
                 ID = order.ID,
-                OrderStatus = (OrderStatus)order.OrderStatusID,
+                Status = order.Status,
                 UpdatedTime = order.UpdatedTime
             };
         }
 
-        public static Dto.Model.Order MapToDto(this Domain.Entities.Order order)
+        public static Dto.Model.Order MapToDto(this Domain.Entities.Order order, List<Dto.Model.OrderProduct> items)
         {
             return new Dto.Model.Order()
             {
@@ -27,7 +27,8 @@ namespace Application.Order
                 UpdatedTime = order.UpdatedTime,
                 AddressID  = order.AddressID,
                 CreatedTime = order.CreatedTime,
-                OrderStatusID = (int)order.OrderStatus
+                Status = order.Status,
+                Items = items
             };
         }
     }

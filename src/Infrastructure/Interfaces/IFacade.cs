@@ -15,6 +15,6 @@ namespace Infrastructure.Interfaces
 
         // Order
         BaseResponse AddOrder(Request<Order> orderRequest);
-        Response<Order> GetOrder(int orderID);
+        void CancelOrder(int orderID);
     }
 }

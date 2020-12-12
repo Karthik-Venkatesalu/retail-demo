@@ -42,9 +42,9 @@ namespace Infrastructure
             return _orderRequestHandler.CreateOrder(orderRequest);
         }
 
-        public Response<Order> GetOrder(int orderID)
+        public void CancelOrder(int orderID)
         {
-            return _orderRequestHandler.GetOrder(orderID);
+            _orderRequestHandler.CancelOrder(orderID);
         }
 
         public Response<Product> UpdateProduct(Request<Product> productRequest)

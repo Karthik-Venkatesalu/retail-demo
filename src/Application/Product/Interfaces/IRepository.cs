@@ -12,5 +12,7 @@ namespace Application.Product.Interfaces
         Domain.Entities.Product GetProduct(int productID);
         Domain.Entities.Product UpdateProduct(Domain.Entities.Product product);
         bool DeletProduct(int productID);
+        List<Domain.Entities.Product> GetProducts(int[] productIDs);
+        void BulkUpdateProductQuantity(List<Application.Dto.Model.OrderProduct> orderProducts);
     }
 }

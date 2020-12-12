@@ -22,7 +22,7 @@ namespace Application.Dto.Model
         /// Time when order details were updated (UTC)
         /// </summary>
         [JsonPropertyName("updatedTime")]
-        public DateTime UpdatedTime { get; set; }
+        public DateTime? UpdatedTime { get; set; }
 
         /// <summary>
         /// Delivery Address
@@ -33,7 +33,13 @@ namespace Application.Dto.Model
         /// <summary>
         /// OrderStatus
         /// </summary>
-        [JsonPropertyName("orderStatusId")]
-        public int OrderStatusID { get; set; }
+        [JsonPropertyName("status")]
+        public string Status { get; set; }
+
+        /// <summary>
+        /// List of products ordered
+        /// </summary>
+        [JsonPropertyName("items")]
+        public List<OrderProduct> Items { get; set; }
     }
 }

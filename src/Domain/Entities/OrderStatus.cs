@@ -7,6 +7,7 @@ namespace Domain.Entities
     public enum OrderStatus
     {
         Ordered,
-        Delivered
+        Delivered,
+        Cancelled
     }
 }

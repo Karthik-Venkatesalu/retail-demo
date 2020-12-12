@@ -6,6 +6,6 @@ namespace Application.Order.Interfaces
     public interface IRequestHandler
     {
         BaseResponse CreateOrder(Request<Dto.Model.Order> order);
-        Response<Dto.Model.Order> GetOrder(int orderID);
+        void CancelOrder(int orderID);
     }
 }

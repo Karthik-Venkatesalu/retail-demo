@@ -16,17 +16,16 @@ TABLESPACE pg_default;
 
 CREATE TABLE retail."order"
 (
-    id integer NOT NULL,
+    id integer NOT NULL DEFAULT nextval('retail.order_id_seq'::regclass),
     address_id integer NOT NULL,
-    order_status integer,
     created_time timestamp(6) without time zone NOT NULL,
     updated_time timestamp(6) without time zone,
+    status character varying(128) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT pk_order_id PRIMARY KEY (id),
     CONSTRAINT fk_order_address_id_address_id FOREIGN KEY (address_id)
         REFERENCES retail.address (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-        NOT VALID
 )
 
 TABLESPACE pg_default;
@@ -48,6 +47,7 @@ CREATE TABLE retail.orderproduct
 (
     order_id integer NOT NULL,
     product_id integer NOT NULL,
+    quantity integer NOT NULL,
     CONSTRAINT pk_orderproduct_order_id_product_id PRIMARY KEY (order_id, product_id)
 )
 

@@ -5,6 +5,7 @@ using Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Application.Dto.Response.Model;
 
 namespace api.Controllers
 {
@@ -24,7 +25,14 @@ namespace api.Controllers
         {
             try
             {
-                return StatusCode(StatusCodes.Status201Created, _facade.AddOrder(request));
+                var response = _facade.AddOrder(request);
+
+                if (response is ErrorResponse)
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, response);
+                }
+                
+                return StatusCode(StatusCodes.Status201Created, response);
             }
             catch
             {
@@ -34,11 +42,12 @@ namespace api.Controllers
         }
 
         [HttpGet("{orderID}")]
-        public ActionResult GetOrder(int orderID)
+        public ActionResult CancelOrder(int orderID)
         {
             try
             {
-                return Ok(_facade.GetOrder(orderID));
+                _facade.CancelOrder(orderID);
+                return NoContent();
             }
             catch
             {

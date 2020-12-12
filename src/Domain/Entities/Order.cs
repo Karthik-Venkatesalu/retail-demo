@@ -19,7 +19,7 @@ namespace Domain.Entities
         /// <summary>
         /// Time when order details were updated (UTC)
         /// </summary>
-        public DateTime UpdatedTime { get; set; }
+        public DateTime? UpdatedTime { get; set; }
 
         /// <summary>
         /// Delivery Address
@@ -29,6 +29,6 @@ namespace Domain.Entities
         /// <summary>
         /// OrderStatus
         /// </summary>
-        public OrderStatus OrderStatus { get; set; }
+        public string Status { get; set; }
     }
 }

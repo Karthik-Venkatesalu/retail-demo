@@ -7,7 +7,7 @@ namespace Application.Order.Interfaces
 {
     public interface IRepository
     {
-        Domain.Entities.Order GetOrder(int orderID);
-        Domain.Entities.Order CreateOrder(Domain.Entities.Order order);
+        void CancelOrder(int orderID);
+        Domain.Entities.Order CreateOrder(Domain.Entities.Order order, List<Application.Dto.Model.OrderProduct> orderProducts);
     }
 }
